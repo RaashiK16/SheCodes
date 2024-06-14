@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Grid, Typography, Box } from '@mui/material';
+import { Container, Grid, Typography, Box, Button } from '@mui/material';
 import CompanySearch from '../components/CompanySearch';
 import PeriodIntervalSetter from '../components/PeriodIntervalSetter';
 import BitcoinPrediction from '../components/BitcoinPrediction';
@@ -7,6 +7,13 @@ import BitcoinPrediction from '../components/BitcoinPrediction';
 const Dashboard = () => {
   const [period, setPeriod] = useState('');
   const [interval, setInterval] = useState('');
+
+  const handleSubmit = () => {
+    // Handle submit logic here
+    console.log('Period:', period);
+    console.log('Interval:', interval);
+    // You can add further logic for form submission or API calls
+  };
 
   return (
     <Container>
@@ -23,6 +30,16 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12}>
             <BitcoinPrediction period={period} interval={interval} />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
           </Grid>
         </Grid>
       </Box>

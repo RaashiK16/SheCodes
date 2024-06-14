@@ -1,8 +1,23 @@
 import React, { useState } from 'react';
-import { TextField, MenuItem, Grid, Box } from '@mui/material';
+import { TextField, Grid, Box } from '@mui/material';
+import { styled } from '@mui/system';
 
-const periods = ["1 Day", "1 Week", "1 Month"];
-const intervals = ["1 Hour", "6 Hours", "12 Hours"];
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  background: 'linear-gradient(145deg, #64b5f6, #2196f3)',
+  borderRadius: 8,
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#555',
+    },
+    '&:hover fieldset': {
+      borderColor: '#777',
+    },
+  },
+  '& .MuiInputBase-input': {
+    color: "black",
+    background:"#fff",
+  },
+}));
 
 const PeriodIntervalSetter = ({ onPeriodChange, onIntervalChange }) => {
   const [period, setPeriod] = useState('');
@@ -12,36 +27,22 @@ const PeriodIntervalSetter = ({ onPeriodChange, onIntervalChange }) => {
     <Box my={2}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <TextField
-            select
-            label="Period"
+          <StyledTextField
+            label="Period (e.g., 1 Day, 1 Week)"
             value={period}
             onChange={(e) => { setPeriod(e.target.value); onPeriodChange(e.target.value); }}
             fullWidth
             variant="outlined"
-          >
-            {periods.map((option) => (
-              <MenuItem key={option} value={option}>
-                {option}
-              </MenuItem>
-            ))}
-          </TextField>
+          />
         </Grid>
         <Grid item xs={6}>
-          <TextField
-            select
-            label="Interval"
+          <StyledTextField
+            label="Interval (e.g., 1 Hour, 2 Days)"
             value={interval}
             onChange={(e) => { setInterval(e.target.value); onIntervalChange(e.target.value); }}
             fullWidth
             variant="outlined"
-          >
-            {intervals.map((option) => (
-              <MenuItem key={option} value={option}>
-                {option}
-              </MenuItem>
-            ))}
-          </TextField>
+          />
         </Grid>
       </Grid>
     </Box>

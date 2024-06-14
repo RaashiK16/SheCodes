@@ -1,37 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Card, CardContent, Typography, Box } from '@mui/material';
+import React from 'react';
+import { Typography, Box } from '@mui/material';
 
 const BitcoinPrediction = ({ period, interval }) => {
-  const [prediction, setPrediction] = useState(null);
-
-  useEffect(() => {
-    if (period && interval) {
-      // Replace with your API endpoint
-      axios.get(`https://api.example.com/predict?period=${period}&interval=${interval}`)
-        .then(response => setPrediction(response.data))
-        .catch(error => console.error('Error fetching prediction:', error));
-    }
-  }, [period, interval]);
-
+  // Placeholder for the Bitcoin prediction logic
   return (
-    <Box my={2}>
-      <Card>
-        <CardContent>
-          <Typography variant="h5" component="div">
-            Best Time to Buy Bitcoin
-          </Typography>
-          {prediction ? (
-            <Typography variant="body2" color="textSecondary">
-              {prediction.bestTime}
-            </Typography>
-          ) : (
-            <Typography variant="body2" color="textSecondary">
-              Please select a period and interval to see the prediction.
-            </Typography>
-          )}
-        </CardContent>
-      </Card>
+    <Box mt={4}>
+      <Typography variant="h6">
+        Best time to buy Bitcoin:
+      </Typography>
+      <Typography variant="body1">
+        Period: {period || "Not set"}
+      </Typography>
+      <Typography variant="body1">
+        Interval: {interval || "Not set"}
+      </Typography>
     </Box>
   );
 };
